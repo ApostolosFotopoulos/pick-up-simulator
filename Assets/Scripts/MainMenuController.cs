@@ -8,6 +8,7 @@ public class MainMenuController : MonoBehaviour {
     void Start() {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        Globals.score = "0/3";
     }
 
     public void StartTrial() {

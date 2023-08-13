@@ -13,13 +13,15 @@ public class PickUpController : MonoBehaviour{
 
 	[Header("Pickup Objects")]
 	[SerializeField] GameObject[] objectsToPickUp;
-	int removedObjectsCount = 0;
 	
 	[Header("Physics Parameters")]
 	[SerializeField] float pickUpRange = 0.4f;
 	[SerializeField] float pickUpForce = 150.0f;
-	
-    
+
+    private int removedObjectsCount = 0;
+    private int numberOfClicks = 0;
+
+
     void Start() {
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -53,7 +55,12 @@ public class PickUpController : MonoBehaviour{
 			if (Input.GetMouseButtonDown(0)) {
 				if (heldObj == null) {
 					if (dist<ChangeDistanceFromDifficulty()) {
-						PickUpObject(objectToPickUp);
+						numberOfClicks++;
+						if (numberOfClicks == Globals.catchClickDifficulty+1)
+						{
+                            PickUpObject(objectToPickUp);
+                            numberOfClicks=0;
+                        }
 					}
 				}
 				else {
@@ -81,7 +88,7 @@ public class PickUpController : MonoBehaviour{
 
 	bool RemovePickedObjectCheck() {
 		float dist = Vector3.Distance(heldObj.transform.position,removeItemCheck.transform.position);
-		Debug.Log(dist);
+		//Debug.Log(dist);
 		if (dist<removeItemRange) {
 			return true;
 		}
@@ -119,23 +126,20 @@ public class PickUpController : MonoBehaviour{
 	}
 
 	float ChangeDistanceFromDifficulty() {
-		float extraDistance = 0;
-		if (Globals.difficultyLevel == 0f) {
+		float extraDistance;
+		if (Globals.catchDistanceDifficulty == 0) {
 			extraDistance = 0.20f;
 		}
-		else if (Globals.difficultyLevel == 1f) {
+		else if (Globals.catchDistanceDifficulty == 1) {
 			extraDistance = 0.15f;
 		}
-		else if (Globals.difficultyLevel == 2f) {
+		else if (Globals.catchDistanceDifficulty == 2) {
 			extraDistance = 0.10f;
 		}
-		else if (Globals.difficultyLevel == 3f) {
+		else {
 			extraDistance = 0.05f;
 		}
-		else {
-			extraDistance = 0f;
-		}
-
+		//Debug.Log(extraDistance);
 		return pickUpRange + extraDistance;
 	}
 
