@@ -6,7 +6,7 @@ using System.Linq;
 public class PickUpController : MonoBehaviour{
 	[Header("Pickup Settings")]
 	[SerializeField] GameObject removeItemCheck;
-	[SerializeField] float removeItemRange = 0.18f;
+	[SerializeField] float removeItemRange = 0.22f;
 	private GameObject heldObj;
 	private Rigidbody heldObjRB;
 	private Collider heldObjCOL;
