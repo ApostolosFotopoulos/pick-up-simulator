@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,8 @@ public class OptionsMenuController : MonoBehaviour
 {
     public Slider CatchDistanceSlider;
     public Slider CatchClickSlider;
+    public TextMeshProUGUI distanceText;
+    public TextMeshProUGUI clicksText;
 
     void Start()
     {
@@ -47,9 +50,11 @@ public class OptionsMenuController : MonoBehaviour
 
     public void IncreaseCatchDistanceDifficulty()
     {
+        
         if (Globals.catchDistanceDifficulty < 3)
         {
             Globals.catchDistanceDifficulty += 1;
+            distanceText.text = (Globals.catchDistanceDifficulty + 1).ToString();
         }
         
         CatchDistanceSlider.value += 0.333f;
@@ -60,6 +65,7 @@ public class OptionsMenuController : MonoBehaviour
         if (Globals.catchDistanceDifficulty > 0)
         {
             Globals.catchDistanceDifficulty -= 1;
+            distanceText.text = (Globals.catchDistanceDifficulty + 1).ToString();
         }
         
         CatchDistanceSlider.value -= 0.333f;
@@ -70,6 +76,7 @@ public class OptionsMenuController : MonoBehaviour
         if (Globals.catchClickDifficulty < 3)
         {
             Globals.catchClickDifficulty += 1;
+            clicksText.text = (Globals.catchClickDifficulty + 1).ToString();
         }
 
         CatchClickSlider.value += 0.333f;
@@ -80,6 +87,7 @@ public class OptionsMenuController : MonoBehaviour
         if (Globals.catchClickDifficulty > 0)
         {
             Globals.catchClickDifficulty -= 1;
+            clicksText.text = (Globals.catchClickDifficulty + 1).ToString();
         }
 
         CatchClickSlider.value -= 0.333f;

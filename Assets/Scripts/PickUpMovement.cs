@@ -5,12 +5,13 @@ using UnityEngine;
 public class PickUpMovement : MonoBehaviour {
 
     [Header("Environment Variables")]
-    [SerializeField] private float xBorderMin = -1.2f;
-    [SerializeField] private float xBorderMax = 1.2f;
-    [SerializeField] private float zBorderMin = 0.8f;
-    [SerializeField] private float zBorderMax = 2.2f;
-    [SerializeField] private float yBorderMin = 1.3f;
-    [SerializeField] private float yBorderMax = 2.9f;
+    public float xBorderMin = -1.2f;
+    public float xBorderMax = 1.2f;
+    public float yBorderMin = 1.3f;
+    public float yBorderMax = 2.9f;
+    public float zBorderMin = 0.8f;
+    public float zBorderMax = 2.2f;
+     
 
     public CharacterController controller;
 	
