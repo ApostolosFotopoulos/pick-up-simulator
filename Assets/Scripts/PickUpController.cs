@@ -72,7 +72,7 @@ public class PickUpController : MonoBehaviour{
 				if (RemovePickedObjectCheck()) {
 					removedObjectsCount++;
 					Destroy(heldObj);
-					Globals.score = removedObjectsCount + "/3";
+					Globals.score = removedObjectsCount + "/" + objectsToPickUp.Length;
 				}
 				else {
 					MoveObject();

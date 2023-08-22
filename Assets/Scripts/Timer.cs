@@ -10,7 +10,7 @@ public class Timer : MonoBehaviour
     public TextMeshProUGUI timeText;
     void Update()
     {   
-        if (Globals.score == "3/3")
+        if (Globals.score == "6/6")
         {
             timerIsRunning = false;
         }
