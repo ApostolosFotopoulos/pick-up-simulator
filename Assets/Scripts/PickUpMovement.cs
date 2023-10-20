@@ -11,7 +11,8 @@ public class PickUpMovement : MonoBehaviour {
     public float yBorderMax = 2.9f;
     public float zBorderMin = 0.8f;
     public float zBorderMax = 2.2f;
-     
+
+    public float[] y = {1.45f, 2.15f, 2.75f};
 
     public CharacterController controller;
 	
@@ -19,17 +20,40 @@ public class PickUpMovement : MonoBehaviour {
     public float speed = 1f;
     public float ySpeed = 20f;
 
+    private float rightClicksStartTime;
+    private float rightClicksEndTime;
+    private int rightClicks = 0;
+    private float yPos = 1.45f;
+
     void Update() {
         if (CheckIfInBorders()) {
             float x = Input.GetAxis("Mouse X");
             float z = Input.GetAxis("Mouse Y");
-            float y = Input.GetAxis("Mouse ScrollWheel");
+
+            if (Input.GetMouseButtonDown(1)) {
+                rightClicks++;
+                if (rightClicks == 1) {
+                    rightClicksStartTime = Time.time;
+                }
+                else {
+                    rightClicksEndTime = Time.time;
+                    Debug.Log(rightClicksEndTime- rightClicksStartTime);
+                    if (rightClicksEndTime - rightClicksStartTime <= 0.2f) {
+                        yPos = y[2];
+                    }
+                    else if (rightClicksEndTime - rightClicksStartTime <= 1f) {
+                        yPos = y[1];
+                    }
+                    else {
+                        yPos = y[0];
+                    }
+                    rightClicks = 0;
+                }
+            }
             
             Vector3 move = transform.right * x + transform.forward * z;
-            Vector3 moveY = transform.up * y;
-            controller.Move(moveY * ySpeed * Time.deltaTime);
             controller.Move(move * speed * Time.deltaTime);
-            transform.position = new Vector3(transform.position.x , transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x , yPos, transform.position.z);
         }
         else {
             CorrectPos();
@@ -57,12 +81,10 @@ public class PickUpMovement : MonoBehaviour {
         if (transform.position.x>xBorderMax) {
             transform.position = new Vector3(xBorderMax , transform.position.y, transform.position.z);
         }
-        if (transform.position.y < yBorderMin)
-        {
+        if (transform.position.y < yBorderMin) {
             transform.position = new Vector3(transform.position.x, yBorderMin, transform.position.z);
         }
-        if (transform.position.y > yBorderMax)
-        {
+        if (transform.position.y > yBorderMax) {
             transform.position = new Vector3(transform.position.x, yBorderMax, transform.position.z);
         }
     }

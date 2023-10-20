@@ -87,9 +87,10 @@ public class PickUpController : MonoBehaviour{
     }
 
 	bool RemovePickedObjectCheck() {
-		float dist = Vector3.Distance(heldObj.transform.position,removeItemCheck.transform.position);
-		//Debug.Log(dist);
-		if (dist<removeItemRange) {
+		//float dist = Vector3.Distance(heldObj.transform.position,removeItemCheck.transform.position);
+		float dist = heldObj.transform.position.z - removeItemCheck.transform.position.z;
+        Debug.Log(dist);
+        if (dist<removeItemRange) {
 			return true;
 		}
 		else {
