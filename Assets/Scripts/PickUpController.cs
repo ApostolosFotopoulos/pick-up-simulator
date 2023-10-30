@@ -15,7 +15,7 @@ public class PickUpController : MonoBehaviour{
 	[SerializeField] GameObject[] objectsToPickUp;
 	
 	[Header("Physics Parameters")]
-	[SerializeField] float pickUpRange = 0.4f;
+	[SerializeField] float pickUpRange = 0.3f;
 	[SerializeField] float pickUpForce = 150.0f;
 
     private int removedObjectsCount = 0;
@@ -30,6 +30,7 @@ public class PickUpController : MonoBehaviour{
     void Update() {
 		if (removedObjectsCount < objectsToPickUp.Length) {
 			GameObject objectToPickUp = FindClosestObject();
+			Debug.Log(objectToPickUp.name);
 			float dist = Vector3.Distance(objectToPickUp.transform.position,transform.position);
 			for (int i = 0; i < objectsToPickUp.Length; i++) {
 				if (objectsToPickUp[i] != null) {

@@ -1223,7 +1223,7 @@ MonoBehaviour:
   - {fileID: 1969028263}
   - {fileID: 1485988909}
   - {fileID: 942572326}
-  pickUpRange: 0.4
+  pickUpRange: 0.3
   pickUpForce: 150
 --- !u!114 &639534028
 MonoBehaviour:
