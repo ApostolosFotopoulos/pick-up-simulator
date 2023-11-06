@@ -38,10 +38,11 @@ public class PickUpMovement : MonoBehaviour {
                 else {
                     rightClicksEndTime = Time.time;
                     Debug.Log(rightClicksEndTime- rightClicksStartTime);
-                    if (rightClicksEndTime - rightClicksStartTime <= 0.2f) {
+                    float period = rightClicksEndTime - rightClicksStartTime;
+                    if (period <= 0.2f) {
                         yPos = y[2];
                     }
-                    else if (rightClicksEndTime - rightClicksStartTime <= 1f) {
+                    else if (period <= 1f) {
                         yPos = y[1];
                     }
                     else {
